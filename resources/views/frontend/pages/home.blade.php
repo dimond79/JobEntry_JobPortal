@@ -196,7 +196,8 @@
                                             <div class="d-flex mb-3">
                                                 {{-- <a class="btn btn-light btn-square me-3" href=""><i
                                             class="far fa-heart text-primary"></i></a> --}}
-                                                <a class="btn btn-primary" href="{{ route('job.apply') }}">Apply Now</a>
+                                                <a class="btn btn-primary"
+                                                    href="{{ route('job.apply', $job->slug) }}">Apply Now</a>
                                             </div>
                                             <small>Posted {{ $job->created_at->diffForHumans() }}</small>
                                             <small class="text-truncate"><i

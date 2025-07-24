@@ -44,8 +44,9 @@ Route::get('contact', [ContactController::class, 'show'])->name('contact.page');
 Route::post('contact/form', [ContactController::class, 'mail'])->name('contact.mail');
 
 //job application
-Route::get('job/application', [JobApplicationController::class, 'show'])->name('job.apply');
-Route::get('job/{slug}', [JobApplicationController::class, 'jobDetail'])->name('job.detail');
+Route::get('job/application/{slug}', [JobApplicationController::class, 'show'])->name('job.apply');
+Route::post('job/application/{slug}', [JobApplicationController::class, 'apply'])->name('jobdetails.apply');
+Route::get('job/{slug}', [JobController::class, 'jobDetail'])->name('job.detail');
 
 Route::get('job/list/page', [JobController::class, 'list'])->name('job.lists');
 
@@ -69,11 +70,13 @@ Route::post('register/employer', [RegisterController::class, 'registerEmployer']
 //frontend login route
 Route::get('login', [LoginController::class, 'showLoginForm'])->name('login.form');
 Route::post('login', [LoginController::class, 'login'])->name('login');
-Route::get('dashboard/jobseeker', [LoginController::class, 'jobseekerDashboard'])->name('jobseeker.dashboard');
-Route::get('dashboard/employer', [LoginController::class, 'employerDashboard'])->name('employer.dashboard');
+
+
 
 Route::middleware(['web', 'auth:jobseeker'])->group(function () {
 
+    Route::get('dashboard/jobseeker', [LoginController::class, 'jobseekerDashboard'])->name('jobseeker.dashboard');
+    Route::get('dashboard/employer', [LoginController::class, 'employerDashboard'])->name('employer.dashboard');
     //jobseeker dashboard
     Route::get('dashboard/profile', [DashboardController::class, 'showProfile'])->name('dashboard.profile');
     Route::post('dashboard/profile', [DashboardController::class, 'storeProfile'])->name('profile.store');
@@ -94,7 +97,7 @@ Route::middleware(['web', 'auth:jobseeker'])->group(function () {
 // })->name('logout');
 Route::post('logout', function () {
     Auth::guard('jobseeker')->logout();
-    return redirect()->route('home.page');
+    return redirect()->route('home.page')->with("info", "You have logout from dashboard.");
 })->name('logout');
 
 

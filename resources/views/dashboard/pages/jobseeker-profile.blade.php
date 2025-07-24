@@ -13,8 +13,7 @@
                 @csrf
                 {{-- phone --}}
                 <label for="phone">Phone</label>
-                <input type="text" name="phone[]" id="phone" placeholder="Enter phone number"><br>
-                <input type="text" name="phone[]" id="phone" placeholder="Enter another phone number"><br>
+                <input type="text" name="phone" id="phone" placeholder="Enter phone number"><br>
                 @error('phone')
                     <div>{{ $message }}</div>
                 @enderror

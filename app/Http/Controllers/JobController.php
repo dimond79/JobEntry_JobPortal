@@ -21,6 +21,19 @@ class JobController extends Controller
         return view('frontend.pages.joblist', compact('jobs'));
     }
 
+    public function jobDetail($slug)
+    {
+        $job_detail = Job::where('slug', $slug)->firstOrFail();
+        $days_left = now()->diffInDays($job_detail->date_line, false);
+        // dd($days_left);
+        return view('frontend.pages.job_detail',  [
+            'job_detail' => $job_detail,
+            'days_left' => $days_left,
+            'meta_title' => $job_detail->meta_title,
+            'meta_description' => $job_detail->meta_description,
+        ]);
+    }
+
     public function jobsByCategory($slug)
     {
         $category = Category::where('slug', $slug)->firstOrFail();

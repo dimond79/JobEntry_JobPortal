@@ -47,6 +47,6 @@ class ContactController extends Controller
         //send to admin
         // Mail::to('hirashrestha9840@gmail.com')->send(new TestMail("New Contact Mail","New Message from: {$request->email}<br/>Message:{$request->message}"));
 
-        return back()->with('success', 'You message sent successfully.');
+        return back()->with('success', 'Your message sent successfully.');
     }
 }

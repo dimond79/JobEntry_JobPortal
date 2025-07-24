@@ -2,6 +2,8 @@
 
 @section('title', 'Job Detail')
 
+@section('meta_description', Str::limit(strip_tags($job_detail->description), 150))
+
 @section('content')
     <div class="container-xxl py-5 wow fadeInUp" data-wow-delay="0.1s">
         <div class="container">

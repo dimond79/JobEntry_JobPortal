@@ -23,8 +23,7 @@ class DashboardController extends Controller
     public function storeProfile(Request $request)
     {
         $validated = $request->validate([
-            'phone' => 'required|array|min:1',
-            'phone.*' => 'required|string',
+            'phone' => 'required|string|max:40',
             'gender' => 'required|string|in:male,female,other',
             'dob' => 'required|date',
             'address' => 'required|string|max:255',
@@ -71,19 +70,26 @@ class DashboardController extends Controller
         // $test = $jobseeker_user->jobseeker->id;
         // dd($test);
 
-        foreach ($validated['phone'] ?? [] as $phone) {
+        $profile->phones()->create([
+            'phone_no' => $validated['phone'],
+            'job_user_id' => $jobseeker_user->id,
+        ]);
+
+        // for two or input field for phone no
+        // foreach ($validated['phone'] ?? [] as $phone) {
 
 
-            if (!empty($phone)) {
-                $profile->phones()->create([
-                    'phone_no' => $phone,
-                    // 'jobseeker_id' => $jobseeker_user->jobseeker->id,
-                    'job_user_id' => $jobseeker_user->id,
-                ]);
-            }
-        }
+        //     if (!empty($phone)) {
+        //         $profile->phones()->create([
+        //             'phone_no' => $phone,
+        //             // 'jobseeker_id' => $jobseeker_user->jobseeker->id,
+        //             'job_user_id' => $jobseeker_user->id,
+        //         ]);
+        //     }
+        // }
 
 
-        return redirect()->route('jobseeker.dashboard')->with('success', 'Profile updated successfully.');
+
+        return redirect()->route('jobseeker.dashboard')->with('success', 'Profile created successfully.');
     }
 }

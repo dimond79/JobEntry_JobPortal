@@ -24,9 +24,9 @@ class LoginController extends Controller
             // dd($user);
 
             if ($user->role === 'jobseeker') {
-                return redirect()->route('jobseeker.dashboard');
+                return redirect()->route('jobseeker.dashboard')->with("success", "Login Successfully.");
             } elseif ($user->role === 'employer') {
-                return redirect()->route('employer.dashboard');
+                return redirect()->route('employer.dashboard')->with("success", "Login Successfully.");
             }
 
             return abort(403, 'Unknown Role');

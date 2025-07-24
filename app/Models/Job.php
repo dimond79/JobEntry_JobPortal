@@ -19,6 +19,11 @@ class Job extends Model
         return $this->belongsTo(Company::class);
     }
 
+    public function jobApplications()
+    {
+        return $this->hasMany(JobApplication::class);
+    }
+
 
 
     protected $casts = [

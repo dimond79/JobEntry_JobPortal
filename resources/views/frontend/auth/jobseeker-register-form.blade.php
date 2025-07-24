@@ -33,7 +33,7 @@
 
                     <!-- Login Link -->
                     <p class="text-center mt-3">
-                        Already have an account? <a href="">Login here</a>
+                        Already have an account? <a href="{{ route('login.form') }}">Login here</a>
                     </p>
                 </form>
             </div>

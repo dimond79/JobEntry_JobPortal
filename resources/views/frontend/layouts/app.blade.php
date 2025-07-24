@@ -3,10 +3,13 @@
 
 <head>
     <meta charset="utf-8">
-    <title>@yield('title', 'Job Portal') | Job Entry</title>
+
+    <title>{{ $meta_title ?? (View::getSection('title') ?? setting('site.title')) }}</title>
+    {{-- <title>@yield('title', 'Job Portal') | Job Entry</title> --}}
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <meta content="" name="keywords">
-    <meta content="" name="description">
+    <meta name="description"
+        content="{{ $meta_description ?? (View::getSection('description') ?? setting('site.description')) }}">
 
     <!-- Favicon -->
     <link href="img/favicon.ico" rel="icon">
@@ -30,6 +33,21 @@
 
     <!-- Template Stylesheet -->
     <link href="{{ asset('css/style.css') }}" rel="stylesheet">
+
+    {{-- jquery cdn for toastr --}}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"
+        integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+    {{-- cdn for toastr js --}}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.1.4/toastr.min.js"
+        integrity="sha512-lbwH47l/tPXJYG9AcFNoJaTMhGvYWhVM9YI43CT+uteTRRaiLCui8snIgyAN8XWgNjNhCqlAUdzZptso6OCoFQ=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+    {{-- cdn for toastr css --}}
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.1.4/toastr.css"
+        integrity="sha512-oe8OpYjBaDWPt2VmSFR+qYOdnTjeV9QPLJUeqZyprDEQvQLJ9C5PCFclxwNuvb/GQgQngdCXzKSFltuHD3eCxA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
 
     @yield('js')
 </head>
@@ -80,5 +98,19 @@
     <!-- Template Javascript -->
     <script src="{{ asset('js/main.js') }}"></script>
 </body>
+<script type="text/javascript">
+    @session('success')
+    toastr.success("{{ $value }}", "Success");
+    @endsession
+    @session('error')
+    toastr.error("{{ $value }}", "Error");
+    @endsession
+    @session('info')
+    toastr.info("{{ $value }}", "Info");
+    @endsession
+    @session('warning')
+    toastr.warning("{{ $value }}", "Warning");
+    @endsession
+</script>
 
 </html>

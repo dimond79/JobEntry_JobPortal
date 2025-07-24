@@ -13,15 +13,20 @@
                 @csrf
                 @method('PUT')
                 {{-- phone --}}
-                <label for="phone">Phone</label>
-                @foreach ($profile->phones as $phone)
-                    <input type="text" name="phone[]" id="phone" value={{ $phone->phone_no }}
-                        placeholder="Enter phone number"><br>
-                @endforeach
-                {{-- <input type="text" name="phone[]" id="phone" placeholder="Enter another phone number"><br> --}}
-                @error('phone')
-                    <div class="text-danger mt-1">{{ $message }}</div>
-                @enderror
+                <div id="phone-wrapper">
+                    <label class="form-label">Phone</label>
+                    @foreach ($profile->phones as $phone)
+                        <input type="text" name="phone[]" value={{ $phone->phone_no }}
+                            placeholder="Enter phone number"><br>
+                    @endforeach
+                    {{-- <input type="text" name="phone[]" id="phone" placeholder="Enter another phone number"><br> --}}
+                    @error('phone')
+                        <div class="text-danger mt-1">{{ $message }}</div>
+                    @enderror
+                </div>
+
+                {{-- add button --}}
+                <button type="button" id="add-phone" class="btn btn-sm btn-outline-primary mt-2">Add phone</button><br>
 
                 {{-- gender --}}
                 <label for="gender">Gender</label>
@@ -100,7 +105,27 @@
 
                 <button type="submit">Update Profile</button>
             </form>
+
         </div>
     </div>
 
+
+
 @endsection
+
+@push('scripts')
+    <script>
+        document.getElementById('add-phone').addEventListener('click', function() {
+            let wrapper = document.getElementById('phone-wrapper');
+
+            // Create new input element
+            let input = document.createElement('input');
+            input.type = 'text';
+            input.name = 'phone[]';
+            input.classList.add('form-control', 'mb-2');
+            input.placeholder = 'Enter additional phone number';
+
+            wrapper.appendChild(input);
+        });
+    </script>
+@endpush

@@ -31,7 +31,8 @@
 
                     <!-- Login Link -->
                     <p class="text-center mt-3">
-                        New to JobEntry? <a href="">Register here</a>
+                        New to JobEntry? Register as <a href="{{ route('registerform.jobseeker') }}">Jobseeker</a> or <a
+                            href="{{ route('registerform.employer') }}"> Employer </a>
                     </p>
                 </form>
             </div>

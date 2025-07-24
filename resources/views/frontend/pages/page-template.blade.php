@@ -1,6 +1,8 @@
 @extends('frontend.layouts.app')
 
-@section('title', 'page')
+@section('title', 'Page')
+
+@section('meta_description', Str::limit(strip_tags($page_content->description), 150))
 
 @section('content')
     {{-- {{ $page_content }} --}}

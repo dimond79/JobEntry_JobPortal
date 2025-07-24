@@ -12,9 +12,6 @@
 
     <div class="container-xxl py-5">
         <div class="container">
-            @if (session('success'))
-                <div class="alert alert-success">{{ session('success') }}</div>
-            @endif
             <h1 class="text-center mb-5 wow fadeInUp" data-wow-delay="0.1s">Contact For Any Query</h1>
             <div class="row g-4">
                 <div class="col-12">

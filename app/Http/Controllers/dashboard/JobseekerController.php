@@ -100,16 +100,22 @@ class JobseekerController extends Controller
             // $profile->phones->phone_no = $phone;
 
         }
-        return redirect()->route('jobseeker.dashboard')->with('success', 'Profile Updated successfully.');
+        return redirect()->route('jobseeker.dashboard')->with('info', 'Profile Updated successfully.');
     }
 
     public function deleteProfile()
     {
         $job_user = Auth::guard('jobseeker')->user();
 
-        DB::transaction(function () use ($job_user) {
 
-            $profile = Jobseeker::where('job_user_id', $job_user->id)->with('phones')->firstOrFail();
+        $profile = Jobseeker::where('job_user_id', $job_user->id)->with('phones')->first();
+
+        if (!$profile) {
+            Auth::guard('jobseeker')->logout();
+            return  redirect()->route('home.page')->with('error', 'Profile not found.');
+        }
+        DB::transaction(function () use ($job_user, $profile) {
+
 
             if ($profile->cv && Storage::exists('public/' . $profile->cv)) {
                 Storage::delete('public/' . $profile->cv);
@@ -124,6 +130,8 @@ class JobseekerController extends Controller
             $job_user->delete();
         });
 
-        return response()->json("success" : "User deleted successfully");
+        Auth::guard('jobseeker')->logout();
+
+        return redirect()->route('home.page')->with('warning', 'Account deleted.');
     }
 }

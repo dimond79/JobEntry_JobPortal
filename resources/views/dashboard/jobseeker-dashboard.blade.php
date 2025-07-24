@@ -35,7 +35,7 @@
                         <div class="card-body">
                             <h5 class="card-title">Browse Jobs</h5>
                             <p class="card-text">Search and apply for jobs that suit you.</p>
-                            <a href="/jobs" class="btn btn-sm btn-primary">Browse Jobs</a>
+                            <a href="{{ route('job.lists') }}" class="btn btn-sm btn-primary">Browse Jobs</a>
                         </div>
                     </div>
                 </div>
