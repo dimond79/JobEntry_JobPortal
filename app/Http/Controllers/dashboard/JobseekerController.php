@@ -69,9 +69,6 @@ class JobseekerController extends Controller
             $validated['profile_image'] = $path;
         }
 
-        foreach ($request->phone as $phone) {
-            $profile->phones->phone_no = $phone;
-        }
 
 
         $profile->update([

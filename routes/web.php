@@ -1,8 +1,10 @@
 <?php
 
 use App\Http\Controllers\ContactController;
+use App\Http\Controllers\dashboard\ApplicationStatusController;
 use App\Http\Controllers\dashboard\DashboardController;
 use App\Http\Controllers\dashboard\JobseekerController;
+use App\Http\Controllers\dashboard\JobStatusController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\JobApplicationController;
 use App\Http\Controllers\JobController;
@@ -88,6 +90,8 @@ Route::middleware(['web', 'auth:jobseeker'])->group(function () {
 
     //delete profile
     Route::delete('profile/delete', [JobseekerController::class, 'deleteProfile'])->name('profile.delete');
+
+    Route::get('jobseeker/status', [ApplicationStatusController::class, 'show'])->name('jobseeker.status');
 });
 
 //logout route

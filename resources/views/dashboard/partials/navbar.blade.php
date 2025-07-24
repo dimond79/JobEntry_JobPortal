@@ -4,6 +4,7 @@
         <div class="d-flex">
             <form action={{ route('logout') }} method="POST">
                 @csrf
+                <a href="{{ route('home.page') }}" class="btn btn-secondary">Website</a>
                 <button type="submit" class="btn btn-outline-light">Logout</button>
             </form>
         </div>

@@ -9,7 +9,9 @@
             {{-- {{$jobs}} --}}
             <h3>Category: {{ $category->name }}</h3>
             <div class="tab-class text-center wow fadeInUp my=3" data-wow-delay="0.3s">
-
+                @if ($jobs->isempty())
+                    <h5>No job found</h5>
+                @endif
                 <div class="tab-content">
                     <div id="tab-1" class="tab-pane fade show p-0 active">
                         @foreach ($jobs as $job)

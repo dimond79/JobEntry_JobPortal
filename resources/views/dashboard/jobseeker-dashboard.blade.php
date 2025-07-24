@@ -46,7 +46,7 @@
                         <div class="card-body">
                             <h5 class="card-title">My Applications</h5>
                             <p class="card-text">Track jobs you have applied to.</p>
-                            <a href="/jobseeker/applications" class="btn btn-sm btn-primary">View Applications</a>
+                            <a href="{{ route('jobseeker.status') }}" class="btn btn-sm btn-primary">View Applications</a>
                         </div>
                     </div>
                 </div>

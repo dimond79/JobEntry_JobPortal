@@ -26,7 +26,7 @@ class JobApplicationController extends Controller
             'name' => 'required|string|min:3',
             'email' => 'required|email',
             'phone_no' => 'required|string',
-            'cv_file' => 'nullable|file|max:2048',
+            'cv_path' => 'nullable|file|max:2048',
             'message' => 'nullable|string|max:1000',
 
         ]);
@@ -36,17 +36,29 @@ class JobApplicationController extends Controller
         $job_detail = Job::where('slug', $slug)->firstOrFail();
 
         // dd($path);
-        $validated['cv_file'] = $jobseeker_details->cv;
+        // $path = $jobseeker_details->cv;
+        // dd($path);
+        $validated['cv_path'] = $jobseeker_details->cv;
 
-        if ($request->hasFile('cv_file')) {
-            $path = $request->file('cv_file')->store('app_cvs', 'public');
-            $validated['cv_file'] = $path;
+        if ($request->hasFile('cv_path')) {
+            $path = $request->file('cv_path')->store('app_cvs', 'public');
+            $validated['cv_path'] = $path;
         }
-        $validated['status'] = "pending";
-        $validated['job_id'] = $job_detail->id;
 
 
-        JobApplication::create($validated);
+
+
+
+
+        JobApplication::create([
+            'cv_path' => $validated['cv_path'],
+            'status' => "pending",
+            'job_id' => $job_detail->id,
+            'jobseeker_id' => $jobseeker_details->id,
+            'message' =>  $validated['message'],
+            'job_user_id' => $job_user->id,
+
+        ]);
 
         return redirect()->route('job.lists')->with("success", "Job applied successfully.");
     }

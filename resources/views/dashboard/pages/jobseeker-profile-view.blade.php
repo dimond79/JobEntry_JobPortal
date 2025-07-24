@@ -4,6 +4,7 @@
 
 @section('content')
     <div class="container">
+        <a href="{{ route('jobseeker.dashboard') }}" class="btn btn-secondary mb-3">Back</a>
         <h2 class="mb-4">My Profile</h2>
 
         <div class="card shadow-sm p-4">
@@ -70,7 +71,7 @@
             </table>
 
             <div class="text-start mt-3">
-                <a href="{{ route('profile.edit') }}" class="btn btn-secondary btn-sm ">Edit Profile</a><br>
+                <a href="{{ route('profile.edit') }}" class="btn btn-secondary btn-sm mb-2 ">Edit Profile</a><br>
                 <form action="{{ route('profile.delete') }}" method="POST">
                     @csrf
                     @method('delete')

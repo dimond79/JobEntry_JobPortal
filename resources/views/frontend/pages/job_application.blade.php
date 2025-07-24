@@ -40,7 +40,7 @@
                 @if ($jobseeker_details->cv)
                     <p>Current CV: <a href="{{ asset('storage/' . $jobseeker_details->cv) }}">View CV </a></p>
                 @endif
-                <input type="file" class="form-control" name="cv_file" accept=".pdf">
+                <input type="file" class="form-control" name="cv_path" accept=".pdf">
             </div>
 
             <div class="col-12">

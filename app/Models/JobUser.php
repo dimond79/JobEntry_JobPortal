@@ -29,4 +29,8 @@ class JobUser extends Authenticatable
     {
         return $this->hasMany(Phone::class);
     }
+    public function applications()
+    {
+        return $this->hasMany(JobApplication::class);
+    }
 }
