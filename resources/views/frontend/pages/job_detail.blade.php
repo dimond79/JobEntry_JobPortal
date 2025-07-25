@@ -50,7 +50,9 @@
                             </ul>
                     </div>
 
-                    <div class="">
+                    <a href="{{ route('job.apply', $job_detail->slug) }}" class="btn btn-primary ">Apply</a>
+
+                    {{-- <div class="">
                         <h4 class="mb-4">Apply For The Job</h4>
                         <form>
                             <div class="row g-3">
@@ -74,7 +76,7 @@
                                 </div>
                             </div>
                         </form>
-                    </div>
+                    </div> --}}
                 </div>
 
                 <div class="col-lg-4">

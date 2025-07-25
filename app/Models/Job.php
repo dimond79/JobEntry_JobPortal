@@ -8,6 +8,22 @@ use Illuminate\Database\Eloquent\Model;
 class Job extends Model
 {
     use HasFactory;
+    protected $fillable = [
+        'title',
+        'description',
+        'responsibility',
+        'level',
+        'salary_min',
+        'salary_max',
+        'type',
+        'category',
+        'location',
+        'category_id',
+        'user_id',
+        'slug',
+        'date_line',
+        'qualification',
+    ];
 
     public function category()
     {

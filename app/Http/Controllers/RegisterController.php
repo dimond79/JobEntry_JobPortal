@@ -40,7 +40,7 @@ class RegisterController extends Controller
         // Auth::login($user);
         Auth::guard('jobseeker')->login($user);
 
-        return redirect()->route('dashboard.profile');
+        return redirect()->route('jobseeker.profile.register');
     }
 
     public function showEmployerForm()
@@ -67,6 +67,6 @@ class RegisterController extends Controller
         // Auth::login($user);
         Auth::guard('jobseeker')->login($user);
 
-        return redirect()->route('employer.dashboard');
+        return redirect()->route('company.register');
     }
 }

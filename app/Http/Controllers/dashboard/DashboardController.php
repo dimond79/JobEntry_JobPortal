@@ -11,7 +11,7 @@ use Illuminate\Support\Facades\Storage;
 
 class DashboardController extends Controller
 {
-    public function showProfile()
+    public function showJobseekerProfileForm()
     {
         $user = Auth::guard('jobseeker')->user();
         // dd($user);

@@ -30,7 +30,7 @@
                 </div>
 
                 <!-- Browse Jobs -->
-                <div class="col-md-4">
+                {{-- <div class="col-md-4">
                     <div class="card shadow-sm">
                         <div class="card-body">
                             <h5 class="card-title">Browse Jobs</h5>
@@ -38,7 +38,7 @@
                             <a href="{{ route('job.lists') }}" class="btn btn-sm btn-primary">Browse Jobs</a>
                         </div>
                     </div>
-                </div>
+                </div> --}}
 
                 <!-- Applied Jobs -->
                 <div class="col-md-4">

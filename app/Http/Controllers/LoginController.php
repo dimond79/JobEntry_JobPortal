@@ -37,10 +37,10 @@ class LoginController extends Controller
 
     public function jobseekerDashboard()
     {
-        return view('dashboard.jobseeker-dashboard');
+        return view('dashboard.home.jobseeker-dashboard');
     }
     public function employerDashboard()
     {
-        return view('dashboard.employer-dashboard');
+        return view('dashboard.home.employer-dashboard');
     }
 }

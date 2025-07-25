@@ -4,14 +4,15 @@ namespace App\Http\Controllers;
 
 use App\Models\Category;
 use App\Models\Job;
+use App\Models\JobUser;
+use Exception;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Str;
 
 class JobController extends Controller
 {
-    public function form()
-    {
-        return view('frontend.pages.job_post');
-    }
+
 
     public function list()
     {
@@ -19,6 +20,36 @@ class JobController extends Controller
         // dd($jobs->toArray());
         // $categories = Category::with('jobs')->get();
         return view('frontend.pages.joblist', compact('jobs'));
+    }
+
+    public function create(Request $request)
+    {
+        try {
+            $validated = $request->validate([
+                'title' => 'required|string|max:255',
+                'description' => 'required|string|max:1000',
+                'responsibility' => 'required|string|max:1000',
+                'qualification' => 'required|string|max:1000',
+                'level' => 'required|string',
+                'salary_min' => 'nullable|numeric',
+                'salary_max' => 'nullable|numeric',
+                'type' => 'required|string',
+                'location' => 'required|string',
+                'category_id' => 'required|string',
+                'date_line' => 'required|date',
+            ]);
+
+            // dd($validated);
+            $user = Auth::guard('jobseeker')->user();
+            $validated['user_id'] = $user->id;
+            $validated['slug'] = Str::slug($validated['title']);
+
+            Job::create($validated);
+
+            return redirect()->route('employer.dashboard')->with('success', 'Job posted successfully.');
+        } catch (\Exception $e) {
+            return back()->with('error', $e->getMessage());
+        }
     }
 
     public function jobDetail($slug)

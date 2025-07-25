@@ -1,67 +1,95 @@
-  @extends('frontend.layouts.app')
+  @extends('dashboard.layouts.employer_app')
 
   @section('content')
-      <div class="row g-3 mb-4">
-          <div class="col-12">
-              <h5 class="text-primary mb-3">Job Details</h5>
-          </div>
-          <div class="col-12 col-sm-6">
-              <label class="form-label">Job Title *</label>
-              <input type="text" class="form-control" name="job_title" required>
-          </div>
-          <div class="col-12 col-sm-6">
-              <label class="form-label">Company Name *</label>
-              <input type="text" class="form-control" name="job_title" required>
-          </div>
-          <div class="col-12 col-sm-6">
-              <label class="form-label">Job Category *</label>
-              <select class="form-select" name="category_id" required>
-                  <option value="">Select Category</option>
-                  <option value="1">Technology</option>
-                  <option value="2">Marketing</option>
-                  <option value="3">Finance</option>
-                  <option value="4">Healthcare</option>
-                  <option value="5">Education</option>
-                  <option value="6">Sales</option>
-                  <option value="7">Human Resources</option>
-                  <option value="8">Operations</option>
-              </select>
-          </div>
-          <div class="col-12 col-sm-6">
-              <label class="form-label">Job Type *</label>
-              <select class="form-select" name="job_type" required>
-                  <option value="">Select Job Type</option>
-                  <option value="Full Time">Full Time</option>
-                  <option value="Part Time">Part Time</option>
-                  <option value="Contract">Contract</option>
-                  <option value="Freelance">Freelance</option>
-                  <option value="Internship">Internship</option>
-                  <option value="Remote">Remote</option>
-              </select>
-          </div>
-          <div class="col-12 col-sm-6">
-              <label class="form-label">Experience Level</label>
-              <select class="form-select" name="experience_level">
-                  <option value="">Select Experience Level</option>
-                  <option value="Entry Level">Entry Level</option>
-                  <option value="Mid Level">Mid Level</option>
-                  <option value="Senior Level">Senior Level</option>
-                  <option value="Executive">Executive</option>
-              </select>
-          </div>
-          <div class="col-12 col-sm-6">
-              <label class="form-label">Location *</label>
-              <input type="text" class="form-control" name="location" required placeholder="City, Country">
-          </div>
+      <div class="container">
+          <a href="{{ route('employer.dashboard') }}" class="btn btn-dark my-3">Back</a>
+          <form action="{{ route('job.create') }}" method="POST">
+              @csrf
+              <div class="row g-3 mb-6">
+                  <div class="col-12">
+                      <h5 class="text-dark mb-3">Job Details</h5>
 
-          <div class="col-12">
-            <label for="description">Description *</label>
-          </div>
+                  </div>
+                  <div class="col-12 col-sm-6">
+                      <label class="form-label">Job Title</label>
+                      <input type="text" class="form-control" name="title" required>
+                  </div>
+                  <div class="col-12 col-sm-6">
+                      <label class="form-label">Level</label>
+                      {{-- <input type="text" class="form-control" name="job_title" required> --}}
+                      <select class="form-select" name="level" required>
+                          <option value="" selected disabled>Select Job Level</option>
+                          <option value="Intern">Intern</option>
+                          <option value="Junior">Junior</option>
+                          <option value="Mid Level">Mid Level</option>
+                          <option value="Senior">Senior</option>
+                      </select>
+                  </div>
+
+                  <div class="col-12 col-sm-6">
+                      <label class="form-label">Job Category</label>
+                      <select class="form-select" name="category_id" required>
+                          <option value="" selected disabled>Select Category</option>
+                          @foreach ($job_categories as $category)
+                              <option value="{{ $category->slug }}">{{ $category->name }}</option>
+                          @endforeach
+                      </select>
+                  </div>
+                  <div class="col-12 col-sm-6">
+                      <label class="form-label">Job Type</label>
+                      <select class="form-select" name="type" required>
+                          <option value="">Select Job Type</option>
+                          <option value="Full Time">Full Time</option>
+                          <option value="Part Time">Part Time</option>
+                          <option value="Internship">Internship</option>
+                          <option value="Remote">Remote</option>
+                      </select>
+                  </div>
+                  <div class="col-12 col-sm-6">
+                      <label class="form-label">Description</label><br>
+                      <textarea class="form-control" name="description" placeholder="Enter job description" rows="3"></textarea>
+                  </div>
+                  <div class="col-12 col-sm-6">
+                      <label class="form-label">Responsibility</label><br>
+                      <textarea class="form-control" name="responsibility" placeholder="Enter job responsibility" rows="3"></textarea>
+                  </div>
+                  <div class="col-12 col-sm-6">
+                      <label class="form-label">Qualification</label><br>
+                      <textarea class="form-control" name="qualification" placeholder="Enter job qualification" rows="3"></textarea>
+                  </div>
+
+                  <div class="col-12 col-sm-6">
+                      <label class="form-label">Location</label>
+                      <select class="form-select" name="location" required>
+                          <option value="">Select Job Type</option>
+                          <option value="Kathmandu">Kathmandu</option>
+                          <option value="Lalitpur">Lalitpur</option>
+                          <option value="Bhaktapur">Bhaktapur</option>
+                          <option value="Biratnagar">Biratnagar</option>
+                      </select>
+                  </div>
+
+                  <div class="col-12 col-sm-6">
+                      <label class="form-label">Salary</label>
+                      <div class="form-control">
+                          <input type="number" name="salary_min" placeholder="Salary min" />
+                          <input type="number" name="salary_max" placeholder="Salary max" />
+                      </div>
+
+                  </div>
+                  <div class="col-12 col-sm-6">
+                      <label class="form-label">Deadline</label>
+                      <input class="form-control" type="date" name="date_line">
+                  </div>
 
 
-      <div class="col-12">
-          <button class="btn btn-primary w-100 py-3" type="submit">
-              <i class="fa fa-paper-plane me-2"></i>Post Job Listing
-          </button>
-      </div>
-  @endsection
+
+
+                  <div class="col-12">
+                      <button class="btn btn-dark w-100 py-3" type="submit">
+                          <i class="fa fa-paper-plane me-2"></i>Post Job Listing
+                      </button>
+                  </div>
+              </div>
+          </form>
+      @endsection

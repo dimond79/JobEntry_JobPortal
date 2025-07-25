@@ -19,15 +19,15 @@
                                 <div class="row g-4">
                                     <div class="col-sm-12 col-md-8 d-flex align-items-center">
                                         <img class="flex-shrink-0 img-fluid border rounded"
-                                            src="{{ asset('storage/' . $job->company->logo) }}" alt=""
-                                            style="width: 80px; height: 80px;">
+                                            src="{{ asset('storage/' . ($job->company?->logo ?? 'companies/default.png')) }}"
+                                            alt="company logo" style="width: 80px; height: 80px;">
                                         <div class="text-start ps-4">
                                             <a href="{{ route('job.detail', $job->slug) }}">
                                                 <h5 class="mb-3">{{ $job->title }}</h5>
                                             </a>
                                             <span class="text-truncate me-3"><i
                                                     class="fa fa-map-marker-alt text-primary me-2"></i>
-                                                {{ $job->company->location }}</span>
+                                                {{ $job->location }}</span>
                                             <span class="text-truncate me-3"><i
                                                     class="far fa-clock text-primary me-2"></i>{{ $job->type }} </span>
                                             <span class="text-truncate me-0"><i

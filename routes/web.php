@@ -5,6 +5,7 @@ use App\Http\Controllers\dashboard\ApplicationStatusController;
 use App\Http\Controllers\dashboard\DashboardController;
 use App\Http\Controllers\dashboard\JobseekerController;
 use App\Http\Controllers\dashboard\JobStatusController;
+use App\Http\Controllers\dashboard\EmployerController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\JobApplicationController;
 use App\Http\Controllers\JobController;
@@ -35,7 +36,7 @@ use TCG\Voyager\Voyager;
 
 
 Route::get('/', [HomeController::class, 'index'])->name('home.page');
-Route::get('job/post', [JobController::class, 'form'])->name('job.form');
+
 
 //about route
 Route::get('about', [HomeController::class, 'about'])->name('about.page');
@@ -80,7 +81,7 @@ Route::middleware(['web', 'auth:jobseeker'])->group(function () {
     Route::get('dashboard/jobseeker', [LoginController::class, 'jobseekerDashboard'])->name('jobseeker.dashboard');
     Route::get('dashboard/employer', [LoginController::class, 'employerDashboard'])->name('employer.dashboard');
     //jobseeker dashboard
-    Route::get('dashboard/profile', [DashboardController::class, 'showProfile'])->name('dashboard.profile');
+    Route::get('dashboard/profile', [DashboardController::class, 'showJobseekerProfileForm'])->name('jobseeker.profile.register');
     Route::post('dashboard/profile', [DashboardController::class, 'storeProfile'])->name('profile.store');
     Route::get('jobseeker/profile', [JobseekerController::class, 'viewProfile'])->name('jobseeker.profile');
 
@@ -92,6 +93,12 @@ Route::middleware(['web', 'auth:jobseeker'])->group(function () {
     Route::delete('profile/delete', [JobseekerController::class, 'deleteProfile'])->name('profile.delete');
 
     Route::get('jobseeker/status', [ApplicationStatusController::class, 'show'])->name('jobseeker.status');
+
+    //employer route
+    Route::get('job/post/form', [EmployerController::class, 'form'])->name('job.form');
+    Route::post('job/post/form', [JobController::class, 'create'])->name('job.create');
+    Route::get('company/register/profile', [EmployerController::class, 'companyRegister'])->name('company.register');
+    Route::post('company/register/profile', [EmployerController::class, 'storecompanyProfile'])->name('company.profile.register');
 });
 
 //logout route
