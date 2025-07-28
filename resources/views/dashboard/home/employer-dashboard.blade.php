@@ -28,21 +28,21 @@
                     <div class="card-body">
                         <h5 class="card-title">Manage Jobs</h5>
                         <p class="card-text">Edit, delete, or review your job listings.</p>
-                        <a href="/employer/jobs" class="btn btn-sm btn-dark">View Jobs</a>
+                        <a href="{{ route('employer.job.list') }}" class="btn btn-sm btn-dark">View Jobs</a>
                     </div>
                 </div>
             </div>
 
             <!-- Applications -->
-            <div class="col-md-4">
+            {{-- <div class="col-md-4">
                 <div class="card shadow-sm">
                     <div class="card-body">
                         <h5 class="card-title">View Applications</h5>
                         <p class="card-text">Review candidates who applied for your jobs.</p>
-                        <a href="/employer/applications" class="btn btn-sm btn-dark">View Applications</a>
+                        <a href="{{ route('employer.app.job.list') }}" class="btn btn-sm btn-dark">View Applications</a>
                     </div>
                 </div>
-            </div>
+            </div> --}}
 
         </div>
     </div>

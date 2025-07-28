@@ -99,6 +99,11 @@ Route::middleware(['web', 'auth:jobseeker'])->group(function () {
     Route::post('job/post/form', [JobController::class, 'create'])->name('job.create');
     Route::get('company/register/profile', [EmployerController::class, 'companyRegister'])->name('company.register');
     Route::post('company/register/profile', [EmployerController::class, 'storecompanyProfile'])->name('company.profile.register');
+
+    //job/application list
+    Route::get('employer/job/list', [EmployerController::class, 'employerJobList'])->name('employer.job.list');
+    Route::get('employer/{slug}/application/list', [EmployerController::class, 'employerViewApplication'])->name('employer.view.applications');
+    Route::post('employer/status/update/{id}', [EmployerController::class, 'updateJobseekerStatus'])->name('update.jobseeker.status');
 });
 
 //logout route

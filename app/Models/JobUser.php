@@ -25,6 +25,10 @@ class JobUser extends Authenticatable
     {
         return $this->hasOne(Jobseeker::class);
     }
+    public function company()
+    {
+        return $this->hasOne(Company::class);
+    }
     public function phones()
     {
         return $this->hasMany(Phone::class);

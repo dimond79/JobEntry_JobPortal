@@ -17,10 +17,15 @@ class Company extends Model
         'description',
         'logo',
         'slug',
+        'job_user_id'
     ];
 
     public function jobs()
     {
         return $this->hasMany(Job::class);
+    }
+    public function jobUser()
+    {
+        return $this->belongsTo(JobUser::class);
     }
 }

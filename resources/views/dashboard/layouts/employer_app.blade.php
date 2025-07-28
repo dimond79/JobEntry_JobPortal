@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>Job Entry | Employer Dashboard</title>
+    <title>@yield('title', 'Employer Dashboard')</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
 
 
@@ -21,6 +21,8 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.1.4/toastr.css"
         integrity="sha512-oe8OpYjBaDWPt2VmSFR+qYOdnTjeV9QPLJUeqZyprDEQvQLJ9C5PCFclxwNuvb/GQgQngdCXzKSFltuHD3eCxA=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    @stack('styles')
 </head>
 
 <body class="bg-light">
@@ -32,6 +34,7 @@
     @yield('content')
 
 </body>
+@stack('scripts')
 <script type="text/javascript">
     @session('success')
     toastr.success("{{ $value }}", "Success");
