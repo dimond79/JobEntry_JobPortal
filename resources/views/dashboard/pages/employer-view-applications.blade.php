@@ -79,7 +79,8 @@
                                     </td>
                                     <td>
                                         @if ($app->cv_path)
-                                            <a href="{{ asset('storage/' . $app->cv_path) }}"
+                                            {{-- <a href="{{ asset('storage/' . $app->cv_path) }}" --}}
+                                            <a href="{{ route('employer.cv.download', $app->id) }}"
                                                 class="btn btn-sm btn-outline-primary" target="_blank">Download</a>
                                         @else
                                             <span class="text-muted">No Resume</span>

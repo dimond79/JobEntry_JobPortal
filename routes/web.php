@@ -104,6 +104,9 @@ Route::middleware(['web', 'auth:jobseeker'])->group(function () {
     Route::get('employer/job/list', [EmployerController::class, 'employerJobList'])->name('employer.job.list');
     Route::get('employer/{slug}/application/list', [EmployerController::class, 'employerViewApplication'])->name('employer.view.applications');
     Route::post('employer/status/update/{id}', [EmployerController::class, 'updateJobseekerStatus'])->name('update.jobseeker.status');
+
+    //download route
+    Route::get('employer/cv/download/{application}', [EmployerController::class, 'downloadCV'])->name('employer.cv.download');
 });
 
 //logout route

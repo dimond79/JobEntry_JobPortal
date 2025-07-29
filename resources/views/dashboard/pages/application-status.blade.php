@@ -64,7 +64,7 @@
                 <div class="col-sm-6 col-md-4 col-lg-2">
                     <div class="status-card">
                         <i class="fas fa-cloud-download-alt"></i>
-                        <div class="count">0</div>
+                        <div class="count">{{ $cv_download->cv_download_count }}</div>
                         <h5>CV Download</h5>
                     </div>
                 </div>

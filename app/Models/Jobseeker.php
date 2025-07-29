@@ -21,6 +21,7 @@ class Jobseeker extends Model
         'cv',
         'profile_image',
         'job_user_id',
+        'cv_download_count',
     ];
 
     public function job_user()

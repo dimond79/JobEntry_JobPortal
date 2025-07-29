@@ -122,9 +122,11 @@ class JobseekerController extends Controller
                 Storage::delete('public/' . $profile->profile_image);
             }
 
-            $profile->phones()->delete();
-            $profile->delete();
-            $job_user->delete();
+            foreach ($profile->phones as $phone) {
+                $phone->delete(); // soft delete
+            }
+            $profile->delete(); // soft delete
+            $job_user->delete(); // soft delete
         });
 
         Auth::guard('jobseeker')->logout();

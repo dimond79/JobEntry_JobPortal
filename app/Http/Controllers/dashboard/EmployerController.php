@@ -10,6 +10,7 @@ use App\Models\JobApplication;
 use App\Models\JobUser;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 
@@ -89,6 +90,29 @@ class EmployerController extends Controller
         return view('dashboard.pages.employer-view-applications', compact('job_applications'));
     }
 
+    public function downloadCV(JobApplication $application)
+    {
+        // dd($application);
+        $job_user = $application->jobUser;
+
+        if ($job_user && $job_user->jobseeker) {
+            // $job_user->jobseeker->increment('cv_download_count');
+
+            // $job_user->jobseeker->refresh();
+            // dd($job_user->jobseeker->increment('cv_download_count'));
+
+            DB::table('jobseekers')->where('id', $job_user->jobseeker->id)->increment('cv_download_count');
+
+
+            $cv_path = $application->cv_path;
+
+            if ($cv_path && Storage::disk('public')->exists($cv_path)) {
+                return Storage::disk('public')->download($cv_path);
+            }
+        }
+        return redirect()->back()->with('error', 'CV not found.');
+    }
+
     public function updateJobseekerStatus(Request $request, $id)
     {
         $validated = $request->validate([
@@ -99,6 +123,6 @@ class EmployerController extends Controller
             'status' => $validated['status'],
         ]);
 
-        return redirect()->route('employer.job.list')->with('info', 'Status updated successfully.');
+        return redirect()->back()->with('info', 'Status updated successfully.');
     }
 }
