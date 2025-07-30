@@ -42,9 +42,9 @@ class EmployerController extends Controller
             ]);
 
             if ($request->hasFile('logo')) {
-                $validated['logo'] = $request->file('logo')->store('companies\July2025', 'public');
+                $validated['logo'] = $request->file('logo')->store('employer/logo', 'public');
             } else {
-                $validated['logo'] = "companies/default.png";
+                $validated['logo'] = "employer/default.png";
             }
             $user = Auth::guard('jobseeker')->user();
             $validated['job_user_id'] = $user->id;
@@ -65,11 +65,6 @@ class EmployerController extends Controller
         $job_user = Auth::guard('jobseeker')->user();
         // $company = $job_user->company;
         // $jobs = $company ? $company->jobs()->get() : collect();
-        // dd($jobs);
-        Job::where('user_id', $job_user->id)
-            ->where('date_line', '<', now())
-            ->where('status', 'active')
-            ->update(['status' => 'inactive']);
 
         $jobs = Job::where('user_id', $job_user->id)->get();
         return view('dashboard.pages.employer-job-list', compact('jobs'));

@@ -6,7 +6,7 @@
 @section('content')
 
     <div class="container d-flex justify-content-center align-items-center min-vh-100">
-        <div class="card shadow-lg p-4" style="width: 100%; max-width: 600px;">
+        <div class="card shadow-lg p-4" style="width:100%; max-width: 600px;">
             <h4 class="mb-4 text-center">Jobseeker Profile</h4>
 
             <form action="{{ route('profile.update') }}" method="POST" enctype="multipart/form-data">
@@ -44,15 +44,16 @@
                 @enderror
 
                 {{-- dob --}}
-                <label for="dob">Date of Birth</label>
-                <input type="date" name="dob" id="dob" value={{ old('dob', $profile->dob) }}><br>
+                <label class="form-label">Date of Birth</label>
+                <input type="date" class="form-content" name="dob" id="dob"
+                    value={{ old('dob', $profile->dob) }}><br>
                 @error('dob')
                     <div class="text-danger mt-1">{{ $message }}</div>
                 @enderror
 
                 {{-- address --}}
                 <label for="address">Address</label>
-                <textarea name="address" id="address" placeholder="Enter your address">{{ old('address', $profile->address) }}</textarea><br>
+                <textarea name="address" class="form-content" id="address" placeholder="Enter your address">{{ old('address', $profile->address) }}</textarea><br>
                 @error('address')
                     <div class="text-danger mt-1">{{ $message }}</div>
                 @enderror
@@ -103,7 +104,10 @@
                             width="100"></p>
                 @endif
 
-                <button type="submit">Update Profile</button>
+                <button type="submit" class="btn btn-secondary">Update Profile</button>
+                <a href="{{ route('jobseeker.profile') }}" class="btn btn-dark btn-sm">Back</a>
+
+
             </form>
 
         </div>

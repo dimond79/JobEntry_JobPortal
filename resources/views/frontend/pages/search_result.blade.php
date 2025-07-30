@@ -13,7 +13,7 @@
                 <div class="row g-4">
                     <div class="col-sm-12 col-md-8 d-flex align-items-center">
                         <img class="flex-shrink-0 img-fluid border rounded"
-                            src="{{ asset('storage/' . $job->company->logo) }}" alt=""
+                            src="{{ asset('storage/' . ($job->company?->logo ?? 'employer/default.png')) }}" alt=""
                             style="width: 80px; height: 80px;">
                         <div class="text-start ps-4">
                             <a href="{{ route('job.detail', $job->slug) }}">
@@ -33,10 +33,11 @@
                         <div class="d-flex mb-3">
                             {{-- <a class="btn btn-light btn-square me-3" href=""><i
                                             class="far fa-heart text-primary"></i></a> --}}
-                            <a class="btn btn-primary" href="{{ route('job.apply') }}">Apply Now</a>
+                            <a class="btn btn-primary" href="{{ route('job.apply', $job->slug) }}">Apply Now</a>
                         </div>
-                        <small class="text-truncate"><i class="far fa-calendar-alt text-primary me-2"></i>Date
-                            Line:{{ $job->date_line->format('d M Y') }} </small>
+                        <small class="text-truncate"><i
+                                class="far fa-calendar-alt text-primary me-2"></i>Deadline:{{ $job->date_line->format('d M Y') }}
+                        </small>
                     </div>
                 </div>
             </div>

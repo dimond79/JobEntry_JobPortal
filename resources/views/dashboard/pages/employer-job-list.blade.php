@@ -47,11 +47,16 @@
                                 <td>{{ $job->title }}</td>
                                 <td>{{ $job->location }}</td>
                                 <td>
-                                    @if ($job->status === 'active')
+                                    @if ($job->date_line < now())
+                                        <span class="badge bg-secondary">Inactive</span>
+                                    @else
+                                        <span class="badge bg-success">Active</span>
+                                    @endif
+                                    {{-- @if ($job->status === 'active')
                                         <span class="badge bg-success">Active</span>
                                     @else
                                         <span class="badge bg-secondary">Inactive</span>
-                                    @endif
+                                    @endif --}}
                                 </td>
                                 <td>{{ $job->created_at->format('d M Y') }}</td>
                                 <td>{{ $job->date_line->format('d M Y') }}</td>

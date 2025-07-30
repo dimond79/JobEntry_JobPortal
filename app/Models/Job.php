@@ -23,6 +23,7 @@ class Job extends Model
         'slug',
         'date_line',
         'qualification',
+        'company_id',
     ];
 
     public function category()

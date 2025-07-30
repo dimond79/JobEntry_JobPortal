@@ -69,6 +69,15 @@
                     </td>
                 </tr>
             </table>
+            <h5>Profile Completeness:</h5>
+            <div style="width:500px">
+                <div class="progress mb-3 ">
+                    <div class="progress-bar bg-success" role="progressbar" style="width: {{ $profile_completion }}%;"
+                        aria-valuenow="{{ $profile_completion }}" aria-valuemin="0" aria-valuemax="100">
+                        {{ $profile_completion }}%
+                    </div>
+                </div>
+            </div>
 
             <div class="text-start mt-3">
                 <a href="{{ route('profile.edit') }}" class="btn btn-secondary btn-sm mb-2 ">Edit Profile</a><br>

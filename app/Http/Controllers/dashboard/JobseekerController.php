@@ -18,8 +18,23 @@ class JobseekerController extends Controller
         $job_user = Auth::guard('jobseeker')->user();
         $profile = Jobseeker::where('job_user_id', $job_user->id)->with('phones')->first();
         // dd($profile);
+        // % of profile completeness
+        $total_fields = 10;
+        $filled = 0;
 
-        return view('dashboard.pages.jobseeker-profile-view', compact('job_user', 'profile'));
+        if ($job_user->name) $filled++;
+        if ($job_user->email) $filled++;
+        if ($profile->gender) $filled++;
+        if ($profile->dob) $filled++;
+        if ($profile->address) $filled++;
+        if ($profile->education) $filled++;
+        if ($profile->experience) $filled++;
+        if ($profile->skills) $filled++;
+        if ($profile->cv) $filled++;
+        if ($profile->profile_image) $filled++;
+
+        $profile_completion = round(($filled / $total_fields) * 100);
+        return view('dashboard.pages.jobseeker-profile-view', compact('job_user', 'profile', 'profile_completion'));
     }
 
     public function editProfile()

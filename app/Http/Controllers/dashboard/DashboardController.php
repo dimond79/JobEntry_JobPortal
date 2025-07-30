@@ -17,6 +17,8 @@ class DashboardController extends Controller
         // dd($user);
         $profile = $user->jobseeker;
         // dd($profile);
+
+
         return view('dashboard.pages.jobseeker-profile', compact('profile'));
     }
 

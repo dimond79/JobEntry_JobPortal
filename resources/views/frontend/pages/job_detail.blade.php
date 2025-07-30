@@ -34,19 +34,10 @@
                         <ul class="list-unstyled">
                             <li><i class="fa fa-angle-right text-primary me-2"></i>{{ $job_detail->responsibility }}</li>
                             <br /><br />
-                            {{-- <li><i class="fa fa-angle-right text-primary me-2"></i>Elitr stet dolor vero clita labore gubergren</li>
-                                <li><i class="fa fa-angle-right text-primary me-2"></i>Rebum vero dolores dolores elitr</li>
-                                <li><i class="fa fa-angle-right text-primary me-2"></i>Est voluptua et sanctus at sanctus erat</li>
-                                <li><i class="fa fa-angle-right text-primary me-2"></i>Diam diam stet erat no est est</li>
-                            </ul> --}}
                             <h4 class="mb-3">Qualifications</h4>
                             <p>Qualifications for the job are:</p>
                             <ul class="list-unstyled">
                                 <li><i class="fa fa-angle-right text-primary me-2"></i>{{ $job_detail->qualification }}</li>
-                                {{-- <li><i class="fa fa-angle-right text-primary me-2"></i>Elitr stet dolor vero clita labore gubergren</li>
-                                <li><i class="fa fa-angle-right text-primary me-2"></i>Rebum vero dolores dolores elitr</li>
-                                <li><i class="fa fa-angle-right text-primary me-2"></i>Est voluptua et sanctus at sanctus erat</li>
-                                <li><i class="fa fa-angle-right text-primary me-2"></i>Diam diam stet erat no est est</li> --}}
                             </ul>
                     </div>
 

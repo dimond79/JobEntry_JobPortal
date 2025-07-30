@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Category;
+use App\Models\Company;
 use App\Models\Job;
 use App\Models\JobUser;
 use Exception;
@@ -16,8 +17,9 @@ class JobController extends Controller
 
     public function list()
     {
+        // $jobs = Job::with('company');
         $jobs = Job::with('company')->orderBy('created_at', 'desc')->paginate(5);
-        // dd($jobs->toArray());
+        // dd($jobs);
         // $categories = Category::with('jobs')->get();
         return view('frontend.pages.joblist', compact('jobs'));
     }
@@ -43,7 +45,8 @@ class JobController extends Controller
             $user = Auth::guard('jobseeker')->user();
             $validated['user_id'] = $user->id;
             $validated['slug'] = Str::slug($validated['title']);
-
+            $company = Company::where('job_user_id', $user->id)->first();
+            $validated['company_id'] = $company->id;
             Job::create($validated);
 
             return redirect()->route('employer.dashboard')->with('success', 'Job posted successfully.');
