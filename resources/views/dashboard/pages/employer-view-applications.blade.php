@@ -21,7 +21,7 @@
 
 @section('content')
     <div class="container py-4">
-        <a href="{{ route('employer.dashboard') }}" class="btn btn-dark mb-3">Back</a>
+        <a href="{{ route('employer.job.list') }}" class="btn btn-dark mb-3">Back</a>
         <h2 class="mb-4">Job Applicants</h2>
 
         @if ($job_applications->isEmpty())
@@ -37,6 +37,7 @@
                             <th>Status</th>
                             <th>Resume</th>
                             <th>Message</th>
+                            <th>Applicant Profile</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -94,6 +95,14 @@
                                             <p>No Message</p>
                                         @endif
 
+                                    </td>
+                                    <td>
+                                        @if ($app->jobseeker_id)
+                                            <a href="{{ route('employer.view.jobseeker.profile', $app->jobseeker_id) }}"
+                                                class="btn btn-outline-primary btn-sm">View Profile</a>
+                                        @else
+                                            <p>No Jobseeker Profile</p>
+                                        @endif
                                     </td>
                                 </tr>
                             @endforeach

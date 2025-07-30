@@ -61,9 +61,9 @@
                                 <td>{{ $job->created_at->format('d M Y') }}</td>
                                 <td>{{ $job->date_line->format('d M Y') }}</td>
                                 <td>
-                                    <a href="" class="btn btn-outline-info btn-sm">View</a>
+                                    {{-- <a href="" class="btn btn-outline-info btn-sm">View</a>
                                     <a href="" class="btn btn-outline-warning btn-sm">Edit</a>
-                                    <a href="" class="btn btn-outline-red btn-sm">Delete</a>
+                                    <a href="" class="btn btn-outline-red btn-sm">Delete</a> --}}
                                     <a href="{{ route('employer.view.applications', $job->slug) }}"
                                         class="btn btn-primary">View
                                         Applications</a>

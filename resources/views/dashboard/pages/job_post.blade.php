@@ -2,7 +2,7 @@
 
   @section('content')
       <div class="container">
-          <a href="{{ route('employer.dashboard') }}" class="btn btn-dark my-3">Back</a>
+          <a href="{{ url()->previous() }}" class="btn btn-dark my-3">Back</a>
           <form action="{{ route('job.create') }}" method="POST">
               @csrf
               <div class="row g-3 mb-6">

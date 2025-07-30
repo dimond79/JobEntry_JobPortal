@@ -1,6 +1,6 @@
-<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary py-3">
     <div class="container-fluid">
-        <a class="navbar-brand" href="{{ route('jobseeker.dashboard') }}">Job Entry</a>
+        <a class="navbar-brand" href="{{ route('jobseeker.dashboard') }}">Job Entry | JobSeeker Dashboard</a>
         <div class="d-flex">
             <form action={{ route('logout') }} method="POST">
                 @csrf

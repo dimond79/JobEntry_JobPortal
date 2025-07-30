@@ -7,6 +7,7 @@ use App\Models\Category;
 use App\Models\Company;
 use App\Models\Job;
 use App\Models\JobApplication;
+use App\Models\Jobseeker;
 use App\Models\JobUser;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -20,7 +21,7 @@ class EmployerController extends Controller
     {
         $job_categories = Category::get();
 
-        return view('frontend.pages.job_post', compact('job_categories'));
+        return view('dashboard.pages.job_post', compact('job_categories'));
     }
 
     public function companyRegister()
@@ -91,12 +92,13 @@ class EmployerController extends Controller
         $job_user = $application->jobUser;
 
         if ($job_user && $job_user->jobseeker) {
-            // $job_user->jobseeker->increment('cv_download_count');
+            $job_user->jobseeker->increment('cv_download_count');
+            $job_user->jobseeker->increment('profile_view_count');
 
             // $job_user->jobseeker->refresh();
             // dd($job_user->jobseeker->increment('cv_download_count'));
 
-            DB::table('jobseekers')->where('id', $job_user->jobseeker->id)->increment('cv_download_count');
+            // DB::table('jobseekers')->where('id', $job_user->jobseeker->id)->increment('cv_download_count');
 
 
             $cv_path = $application->cv_path;
@@ -114,10 +116,27 @@ class EmployerController extends Controller
             'status' => 'string|in:pending,interviewed,rejected,offered',
         ]);
 
-        JobApplication::where('id', $id)->update([
+        JobApplication::where('id', $id)->with('jobseeker')->update([
             'status' => $validated['status'],
         ]);
+        // dd($job_app);
+        $jobseeker = JobApplication::where('id', $id)->with('jobseeker')->first();
+        // dd($jobseeker);
+        $jobseeker->jobseeker->increment('profile_view_count');
 
         return redirect()->back()->with('info', 'Status updated successfully.');
+    }
+
+    public function viewJobseekerProfile(Jobseeker $profile)
+    {
+        $job_user = $profile->job_user;
+
+        if ($profile && $job_user) {
+            $profile->increment('profile_view_count');
+        }
+        // DB::table('jobseekers')->where('id', $profile->id)->increment('profile_view_count');
+
+
+        return view('dashboard.pages.employer-profile-view', compact('profile', 'job_user'));
     }
 }

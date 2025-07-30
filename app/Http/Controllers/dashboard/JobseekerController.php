@@ -129,17 +129,17 @@ class JobseekerController extends Controller
         DB::transaction(function () use ($job_user, $profile) {
 
 
-            if ($profile->cv && Storage::exists('public/' . $profile->cv)) {
-                Storage::delete('public/' . $profile->cv);
-            }
+            // if ($profile->cv && Storage::exists('public/' . $profile->cv)) {
+            //     Storage::delete('public/' . $profile->cv);
+            // }
 
-            if ($profile->profile_image && Storage::exists('public/' . $profile->profile_image)) {
-                Storage::delete('public/' . $profile->profile_image);
-            }
+            // if ($profile->profile_image && Storage::exists('public/' . $profile->profile_image)) {
+            //     Storage::delete('public/' . $profile->profile_image);
+            // }
 
-            foreach ($profile->phones as $phone) {
-                $phone->delete(); // soft delete
-            }
+            // foreach ($profile->phones as $phone) {
+            //     $phone->delete(); // soft delete
+            // }
             $profile->delete(); // soft delete
             $job_user->delete(); // soft delete
         });

@@ -85,11 +85,11 @@ Route::middleware(['web', 'auth:jobseeker'])->group(function () {
     Route::post('dashboard/profile', [DashboardController::class, 'storeProfile'])->name('profile.store');
     Route::get('jobseeker/profile', [JobseekerController::class, 'viewProfile'])->name('jobseeker.profile');
 
-    //edit profile
+    //edit jobseeker profile
     Route::get('profile/edit', [JobseekerController::class, 'editProfile'])->name('profile.edit');
     Route::put('profile/edit', [JobseekerController::class, 'updateProfile'])->name('profile.update');
 
-    //delete profile
+    //delete jobseeker profile
     Route::delete('profile/delete', [JobseekerController::class, 'deleteProfile'])->name('profile.delete');
 
     Route::get('jobseeker/status', [ApplicationStatusController::class, 'show'])->name('jobseeker.status');
@@ -107,6 +107,9 @@ Route::middleware(['web', 'auth:jobseeker'])->group(function () {
 
     //download route
     Route::get('employer/cv/download/{application}', [EmployerController::class, 'downloadCV'])->name('employer.cv.download');
+
+    //view profile route
+    Route::get('employer/view/jobseeker-profile/{profile}', [EmployerController::class, 'viewJobseekerProfile'])->name('employer.view.jobseeker.profile');
 });
 
 //logout route

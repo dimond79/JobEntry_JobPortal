@@ -1,11 +1,12 @@
-@extends('dashboard.layouts.app')
+@extends('dashboard.layouts.employer_app')
 
-@section('title', 'Profile')
+@section('title', 'Job Applications')
+
 
 @section('content')
-    <div class="container">
-        <a href="{{ route('jobseeker.dashboard') }}" class="btn btn-secondary my-3">Back</a>
-        <h2 class="mb-4">My Profile</h2>
+    <div class="container ">
+        <a href="{{ url()->previous() }}" class="btn btn-secondary my-3">Back</a>
+        <h3 class="mb-4">Applicant Profile</h3>
 
         <div class="card shadow-sm p-4">
             @if ($profile->profile_image)
@@ -58,36 +59,9 @@
                     <th>Skills</th>
                     <td>{{ $profile->skills ?? '-' }}</td>
                 </tr>
-                <tr>
-                    <th>CV</th>
-                    <td>
-                        @if ($profile->cv)
-                            <a href="{{ asset('storage/' . $profile->cv) }}" target="_blank">Download CV</a>
-                        @else
-                            Not uploaded
-                        @endif
-                    </td>
-                </tr>
             </table>
-            <h5>Profile Completeness:</h5>
-            <div style="width:500px">
-                <div class="progress mb-3 ">
-                    <div class="progress-bar bg-success" role="progressbar" style="width: {{ $profile_completion }}%;"
-                        aria-valuenow="{{ $profile_completion }}" aria-valuemin="0" aria-valuemax="100">
-                        {{ $profile_completion }}%
-                    </div>
-                </div>
-            </div>
-
-            <div class="text-start mt-3">
-                <a href="{{ route('profile.edit') }}" class="btn btn-secondary btn-sm mb-2 ">Edit Profile</a><br>
-                <form action="{{ route('profile.delete') }}" method="POST">
-                    @csrf
-                    @method('delete')
-                    <button class="btn btn-danger btn-sm">Delete Profile</button>
-                </form>
-            </div>
-
         </div>
     </div>
+
+
 @endsection

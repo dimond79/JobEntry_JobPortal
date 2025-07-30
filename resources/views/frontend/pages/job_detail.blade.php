@@ -11,8 +11,8 @@
                 <div class="col-lg-8">
                     <div class="d-flex align-items-center mb-5">
                         <img class="flex-shrink-0 img-fluid border rounded"
-                            src="{{ asset('storage/' . $job_detail->company->logo) }}" alt=""
-                            style="width: 80px; height: 80px;">
+                            src="{{ asset('storage/' . ($job_detail->company?->logo ?? 'employer/default.png')) }}"
+                            alt="company logo" style="width: 80px; height: 80px;">
                         <div class="text-start ps-4">
                             <h3 class="mb-3">{{ $job_detail->title }}</h3>
                             <span class="text-truncate me-3"><i

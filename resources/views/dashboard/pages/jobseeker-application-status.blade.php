@@ -45,7 +45,7 @@
 @section('content')
     <div class="bg-light ">
         <div class="container mt-4">
-            <a href="{{ route('jobseeker.dashboard') }}" class="btn btn-secondary mb-3">Back</a>
+            <a href="{{ url()->previous() }}" class="btn btn-secondary mb-3">Back</a>
             <div class="row g-3">
                 <div class="col-sm-6 col-md-4 col-lg-2">
                     <div class="status-card">
@@ -57,14 +57,14 @@
                 <div class="col-sm-6 col-md-4 col-lg-2">
                     <div class="status-card">
                         <i class="fas fa-user"></i>
-                        <div class="count">0</div>
+                        <div class="count">{{ $jobseeker_profile->profile_view_count }}</div>
                         <h5>Profile Visits</h5>
                     </div>
                 </div>
                 <div class="col-sm-6 col-md-4 col-lg-2">
                     <div class="status-card">
                         <i class="fas fa-cloud-download-alt"></i>
-                        <div class="count">{{ $cv_download->cv_download_count }}</div>
+                        <div class="count">{{ $jobseeker_profile->cv_download_count }}</div>
                         <h5>CV Download</h5>
                     </div>
                 </div>

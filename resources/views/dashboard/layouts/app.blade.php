@@ -28,7 +28,7 @@
 
 <body>
 
-    @include('dashboard.partials.navbar')
+    @include('dashboard.partials.jobseeker-navbar')
 
     @yield('content')
 

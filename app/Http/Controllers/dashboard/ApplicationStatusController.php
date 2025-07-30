@@ -16,7 +16,7 @@ class ApplicationStatusController extends Controller
         $application_detail = JobApplication::with('job')->where('job_user_id', $job_user->id)->get();
         // dd($application_detail);
         $applied_count = $application_detail ? $application_detail->count() : 0;
-        $cv_download = Jobseeker::where('job_user_id', $job_user->id)->first();
-        return view('dashboard.pages.application-status', compact('applied_count', 'application_detail', 'cv_download'));
+        $jobseeker_profile = Jobseeker::where('job_user_id', $job_user->id)->first();
+        return view('dashboard.pages.jobseeker-application-status', compact('applied_count', 'application_detail', 'jobseeker_profile'));
     }
 }
