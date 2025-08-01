@@ -83,6 +83,7 @@ Route::middleware(['web', 'auth:jobseeker'])->group(function () {
     //jobseeker dashboard
     Route::get('dashboard/profile', [DashboardController::class, 'showJobseekerProfileForm'])->name('jobseeker.profile.register');
     Route::post('dashboard/profile', [DashboardController::class, 'storeProfile'])->name('profile.store');
+    Route::get('download/cv', [DashboardController::class, 'generateCV'])->name('download.cv');
     Route::get('jobseeker/profile', [JobseekerController::class, 'viewProfile'])->name('jobseeker.profile');
 
     //edit jobseeker profile
@@ -112,11 +113,7 @@ Route::middleware(['web', 'auth:jobseeker'])->group(function () {
     Route::get('employer/view/jobseeker-profile/{profile}', [EmployerController::class, 'viewJobseekerProfile'])->name('employer.view.jobseeker.profile');
 });
 
-//logout route
-// Route::post('logout', function () {
-//     Auth::logout();
-//     return redirect()->route('home.page');
-// })->name('logout');
+
 Route::post('logout', function () {
     Auth::guard('jobseeker')->logout();
     return redirect()->route('home.page')->with("info", "You have logout from dashboard.");

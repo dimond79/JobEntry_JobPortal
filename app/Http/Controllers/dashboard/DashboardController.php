@@ -5,6 +5,7 @@ namespace App\Http\Controllers\dashboard;
 use App\Http\Controllers\Controller;
 use App\Models\Jobseeker;
 use App\Models\Phone;
+use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
@@ -93,5 +94,15 @@ class DashboardController extends Controller
 
 
         return redirect()->route('jobseeker.dashboard')->with('success', 'Profile created successfully.');
+    }
+
+    public function generateCV()
+    {
+        $job_user = Auth::guard('jobseeker')->user();
+        $profile = Jobseeker::where('job_user_id', $job_user->id)->with('phones')->first();
+
+        $pdf = Pdf::loadView('dashboard.pages.cv-pdf-download-template', compact('job_user', 'profile'));
+
+        return $pdf->download('cv.pdf');
     }
 }

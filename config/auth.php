@@ -45,6 +45,10 @@ return [
             'provider' => 'job_users',
 
         ],
+        'api' => [
+            'driver' => 'sanctum',
+            'provider' => 'uers',
+        ]
     ],
 
 

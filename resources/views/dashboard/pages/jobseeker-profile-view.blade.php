@@ -15,6 +15,7 @@
                 </div>
             @endif
 
+
             <table class="table table-bordered">
                 <tr>
                     <th>Name</th>
@@ -81,6 +82,7 @@
 
             <div class="text-start mt-3">
                 <a href="{{ route('profile.edit') }}" class="btn btn-secondary btn-sm mb-2 ">Edit Profile</a><br>
+                <a href="{{ route('download.cv') }}" class="btn btn-info btn-sm mb-2 ">Download CV PDF</a><br>
                 <form action="{{ route('profile.delete') }}" method="POST">
                     @csrf
                     @method('delete')
