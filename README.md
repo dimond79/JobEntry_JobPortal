@@ -22,9 +22,7 @@ A full-featured Job Portal built with Laravel and Voyager, designed to connect j
 - **Authentication**: Laravel Sanctum
 - **API**: Laravel API Resources
 
-## 📸 Screenshots
 
-(Add screenshots of your project UI here. Example: Login Page, Job Listing, Admin Panel, etc.)
 
 ## ⚙️ Installation
 
